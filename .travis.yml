@@ -6,7 +6,8 @@ install:
 - docker build -t ${PACKAGE}:${TRAVIS_COMMIT} .
 - docker login -e 1234@5678.com -u _token -p "$GCLOUDTOKEN" https://eu.gcr.io
 - bin/push.sh
-- docker push "$PACKAGE:$TRAVIS_COMMIT"
+#- docker push "$PACKAGE:$TRAVIS_COMMIT"
+- docker push "$PACKAGE"
 script:
 - docker images
 env:
