@@ -11,3 +11,5 @@ if [ "$TRAVIS_BRANCH" = "stable" ]; then
     echo "Tagging MASTER ${PACKAGE}:${TRAVIS_COMMIT} as ${PACKAGE}:stable"
     docker tag ${PACKAGE}:${TRAVIS_COMMIT} ${PACKAGE}:stable
 fi
+
+docker push "${PACKAGE}:${TRAVIS_COMMIT}"
