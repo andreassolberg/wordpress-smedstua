@@ -2,7 +2,10 @@ services:
   - docker
 
 install:
-  - bin/build.sh
+  - export PACKAGE="gcr.io/solberg-cluster/smedstua"
+  - echo "Building image $PACKAGE:$TRAVIS_COMMIT"
+  - docker build -t ${PACKAGE}:${TRAVIS_COMMIT}
+  - bin/push.sh
 #  - docker build -t gcr.io/solberg-cluster/smedstua:latest .
 #  - docker run --name smedstua gcr.io/solberg-cluster/smedstua:latest bash
 #  - docker run -d -p 127.0.0.1:80:80 --name blog blog
