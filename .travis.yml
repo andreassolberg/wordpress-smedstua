@@ -4,10 +4,10 @@ services:
 #   global:
 #     secure: G2gTEBVraanpuBs2/RF9DI3a055O3+4zUtfd68T2Tzt5mDPQ6jwnsCgQFOf/tQ33hfZw0tO/sdT7PrnqRsk1fiqTisLjGsx4q7FwqM0QGkoz2CVt2ZbA2lRtnRDljJmRC8EG6KzicPAtppw2ejielXJYYXWDKr9LK40ayHFxNjEqaSDSOUh1kNM/GtgUNQQ3zx9gLQurP80m6BImLB+iBJVxWsjhL1cEx7kqXnjer6IH7oOKcJdrZ4cTjY85404NJTfXru7GpLOPkugLSDBW4YmpcpA56chSvSyoM7l1+cnPZkZTwyr1BVDQABeeeqyCI6n/56jCZ0r9SA7HdKtre736x5bKP04IDbY0rd8zT7sEnccJta9nrHysVCkEFoSFYKT1wQxDE/KgnL8EJqtzuk/OR+RI+UeQBEWAd09Tqk02Bw0WQtNq4YR4+O/ZEKBhDKvT9PbJL8gW02lADR1Fw68XE5UGWDervnj2Smd7b7Fxx4W9YkRI3g2AFZAbGjf1XysQ3zrT1N7jAkBnwBNaja+DkmGmVehMIqnLELuejjuPmXh2W6cpluEpjuTbaK+f6HmMCa7u5Rbs3VDijrFotF0s0cpiOLE9dcVdR42fXyJoWH9SM11r9PlNPw8GJQMMflVb8U5B5mCICd8d8WW/mS75ibdKJYRB1RjJw5GhHVU=
 install:
-- export PACKAGE="eu.gcr.io/solberg-cluster/smedstua"
+- export PACKAGE="gcr.io/solberg-cluster/smedstua"
 - echo "Building image $PACKAGE:$TRAVIS_COMMIT"
 - docker build -t ${PACKAGE}:${TRAVIS_COMMIT} .
-- docker login -e 1234@5678.com -u _token -p "$GCLOUDTOKEN" https://eu.gcr.io
+- docker login -e 1234@5678.com -u _token -p "$GCLOUDTOKEN" https://gcr.io
 - bin/push.sh
 #- docker push "$PACKAGE:$TRAVIS_COMMIT"
 - docker -D push "$PACKAGE"
