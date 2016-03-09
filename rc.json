@@ -1,0 +1,50 @@
+{
+	"kind": "ReplicationController",
+	"apiVersion": "v1",
+	"metadata": {
+		"name": "smedstuarc-v7",
+		"labels": {
+			"state": "serving"
+		}
+	},
+	"spec": {
+		"replicas": 1,
+		"selector": {
+			"app": "smedstua-frontend-v7"
+		},
+		"template": {
+			"metadata": {
+				"labels": {
+					"app": "smedstua-frontend-v7",
+					"appid": "smedstua-frontend"
+				}
+			},
+			"spec": {
+				"containers": [{
+					"name": "smedstua",
+					"image": "gcr.io/solberg-cluster/smedstua",
+					"env": [{
+						"name": "TEST",
+						"value": "VALUE"
+					}],
+					"imagePullPolicy": "Always",
+					"ports": [{
+						"containerPort": 80
+					}],
+					"volumeMounts": [{
+						"name": "smedstua",
+						"mountPath": "/etc/secrets",
+						"readOnly": true
+					}]
+				}],
+				"restartPolicy": "Always",
+				"volumes": [{
+					"name": "smedstua",
+					"secret": {
+						"secretName": "smedstua"
+					}
+				}]
+			}
+		}
+	}
+}

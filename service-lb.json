@@ -1,0 +1,22 @@
+{
+	"kind": "Service",
+	"apiVersion": "v1",
+	"metadata": {
+		"name": "smedstuarc",
+		"labels": {
+			"state": "serving"
+		}
+	},
+	"spec": {
+		"ports": [{
+			"protocol": "TCP",
+			"port": 80,
+			"targetPort": 80
+		}],
+		"selector": {
+			"appid": "smedstua-frontend"
+		},
+		"type": "LoadBalancer",
+		"sessionAffinity": "None"
+	}
+}
