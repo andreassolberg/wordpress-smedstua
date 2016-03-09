@@ -8,7 +8,6 @@ gcloud container clusters get-credentials solberg-cluster
 gcloud config set container/cluster solberg-cluster2
 gcloud container clusters get-credentials solberg-cluster2
 
-
 # Building docker
 
     
