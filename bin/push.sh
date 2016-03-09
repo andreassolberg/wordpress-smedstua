@@ -12,4 +12,3 @@ if [ "$TRAVIS_BRANCH" = "stable" ]; then
     docker tag ${PACKAGE}:${TRAVIS_COMMIT} ${PACKAGE}:stable
 fi
 
-docker push "${PACKAGE}:${TRAVIS_COMMIT}"
