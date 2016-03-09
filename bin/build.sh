@@ -7,6 +7,7 @@ echo "Building image ${PACKAGE}:${TRAVIS_COMMIT}"
 
 docker build -t ${PACKAGE}:${TRAVIS_COMMIT}
 
+echo "Working on branch ${TRAVIS_BRANCH}"
 
 if [ "$TRAVIS_BRANCH" = "master" ]; then
     echo "Tagging MASTER ${PACKAGE}:${TRAVIS_COMMIT} as ${PACKAGE}:unstable"
