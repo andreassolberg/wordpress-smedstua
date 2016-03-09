@@ -1,0 +1,10 @@
+services:
+  - docker
+
+install:
+  - docker build -t gcr.io/solberg-cluster/smedstua:latest .
+  - docker run --name smedstua gcr.io/solberg-cluster/smedstua:latest bash
+#  - docker run -d -p 127.0.0.1:80:80 --name blog blog
+
+script:
+  - docker ps | grep -q smedstua
