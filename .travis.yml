@@ -6,6 +6,7 @@ services:
 install:
 - export PACKAGE="eu.gcr.io/solberg-cluster/smedstua"
 #- rm /home/travis/.docker/config.json
+- gcloud auth --help
 - docker login -e 1234@5678.com -u _token -p ${GCLOUDTOKEN} https://eu.gcr.io
 - docker pull ${PACKAGE}
 - echo "Building image $PACKAGE:$TRAVIS_COMMIT"
