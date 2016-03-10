@@ -13,6 +13,6 @@ install:
 
 - bin/push.sh
 #- docker push "$PACKAGE:$TRAVIS_COMMIT"
-- docker -D push "$PACKAGE"
+- docker -D push "$PACKAGE:$TRAVIS_COMMIT"
 script:
 - docker images
