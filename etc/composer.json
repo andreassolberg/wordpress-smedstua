@@ -11,16 +11,14 @@
 		"url": "https://wpackagist.org"
 	}],
 	"require": {
-
 		"johnpbloch/wordpress": "~4.3",
 		"johnpbloch/wordpress-core-installer": "~0.2",
 		"composer/installers": "~1.0",
-		"wpackagist-plugin/amazon-s3-and-cloudfront": "~0.9",
+		"wpackagist-plugin/amazon-s3-and-cloudfront": "~1.0",
 		"wpackagist-plugin/amazon-web-services": "~0.3",
 		"wpackagist-plugin/postmark-approved-wordpress-plugin": "~1.7",
 		"wpackagist-plugin/wp-smushit": "~2",
 		"wpackagist-plugin/regenerate-thumbnails": "~2.2",
-
 		"wpackagist-plugin/jetpack": "~3.9",
 		"wpackagist-plugin/orbisius-child-theme-creator": "~1.2.9",
 		"wpackagist-plugin/disqus-comment-system": "~2.8",
@@ -32,9 +30,6 @@
 		"wpackagist-plugin/styles-twentyfourteen": "~1.0",
 		"wpackagist-plugin/w3-total-cache": "~0.9",
 		"wpackagist-plugin/debug-bar": "~0.8"
-
-
-
 	},
 	"extra": {
 		"wordpress-install-dir": "wordpress",
