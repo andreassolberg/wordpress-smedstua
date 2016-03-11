@@ -18,6 +18,14 @@ gcloud container clusters get-credentials solberg-cluster2
     docker run -p 80:80 --env-file=./ENV -t smedstua
     docker ps
 
+Build and push
+
+    docker build -t eu.gcr.io/solberg-cluster/smedstua:unstable .
+
+
+Update testing
+
+    kubectl rolling-update smedstua-testing-rc-v1 --image=eu.gcr.io/solberg-cluster/smedstua:unstable
 
 # Secrets
 

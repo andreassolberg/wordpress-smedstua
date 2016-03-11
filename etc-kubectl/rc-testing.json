@@ -1,0 +1,46 @@
+{
+	"kind": "ReplicationController",
+	"apiVersion": "v1",
+	"metadata": {
+		"name": "smedstua-testing-rc-v1",
+		"labels": {
+			"state": "serving"
+		}
+	},
+	"spec": {
+		"replicas": 1,
+		"selector": {
+			"app": "smedstua-testing-frontend-v1"
+		},
+		"template": {
+			"metadata": {
+				"labels": {
+					"app": "smedstua-testing-frontend-v1",
+					"appid": "smedstua-testing-frontend"
+				}
+			},
+			"spec": {
+				"containers": [{
+					"name": "smedstua",
+					"image": "eu.gcr.io/solberg-cluster/smedstua:unstable",
+					"imagePullPolicy": "Always",
+					"ports": [{
+						"containerPort": 80
+					}],
+					"volumeMounts": [{
+						"name": "smedstua",
+						"mountPath": "/etc/secrets",
+						"readOnly": true
+					}]
+				}],
+				"restartPolicy": "Always",
+				"volumes": [{
+					"name": "smedstua",
+					"secret": {
+						"secretName": "smedstua-testing"
+					}
+				}]
+			}
+		}
+	}
+}
