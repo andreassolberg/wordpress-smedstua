@@ -34,7 +34,7 @@ RUN /usr/bin/easy_install supervisor-stdout
 
 ADD etc/supervisord.conf /etc/supervisord.conf
 ADD etc/php-fpm.conf /usr/local/etc/php-fpm.conf
-
+ADD etc/php.ini /usr/local/etc/php/conf.d/php.ini
 
 RUN mkdir -p /app
 
