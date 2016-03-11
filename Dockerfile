@@ -3,8 +3,8 @@ FROM php:5.6-fpm
 MAINTAINER Andreas Åkre Solberg <andreas@solweb.no>
 
 # install the PHP extensions we need
-RUN export PKGPHPMEM="libmemcached11 libmemcachedutil2 build-essential libmemcached-dev libz-dev"
-RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev pwgen python-setuptools curl git unzip wget git subversion nginx memcached $PKGPHPMEM nano && rm -rf /var/lib/apt/lists/* \
+# RUN export PKGPHPMEM="libmemcached11 libmemcachedutil2 build-essential libmemcached-dev libz-dev"
+RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev pwgen python-setuptools curl git unzip wget git subversion nginx memcached nano && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd mysqli opcache zip
 
@@ -26,22 +26,24 @@ RUN sed -i -e"s/keepalive_timeout 2/keepalive_timeout 2;\n\tclient_max_body_size
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # nginx site conf
-ADD ./nginx-site.conf /etc/nginx/sites-available/default
+ADD etc/nginx-site.conf /etc/nginx/sites-available/default
 
 # Supervisor Config
 RUN /usr/bin/easy_install supervisor
 RUN /usr/bin/easy_install supervisor-stdout
 
-ADD ./supervisord.conf /etc/supervisord.conf
-ADD ./php-fpm.conf /usr/local/etc/php-fpm.conf
+ADD etc/supervisord.conf /etc/supervisord.conf
+ADD etc/php-fpm.conf /usr/local/etc/php-fpm.conf
 
 
+RUN mkdir -p /app
 
-#RUN mkdir -p /wordpress
-COPY app /app/
+ADD etc/composer.json /app/
+
 
 # VOLUME ["/app"]
 WORKDIR "/app"
+
 
 # RUN curl -sS https://getcomposer.org/installer | php
 RUN bash -c "wget http://getcomposer.org/composer.phar && mv composer.phar /usr/local/bin/composer"
@@ -49,22 +51,24 @@ RUN chmod a+x /usr/local/bin/composer
 RUN cd /app && /usr/local/bin/composer install
 RUN chmod -R a+rX /app/wordpress
 
-
 RUN mkdir /app/wordpress/wp-content/uploads
 RUN chmod 777 /app/wordpress/wp-content/uploads
 
 RUN mkdir /app/wordpress/wp-content/cache
 RUN chmod 777 /app/wordpress/wp-content/cache
 
-RUN mkdir /app/wordpress/wp-content/w3tc-config
-RUN chmod 777 /app/wordpress/wp-content/w3tc-config
+#RUN mkdir /app/wordpress/wp-content/w3tc-config
+#RUN chmod 777 /app/wordpress/wp-content/w3tc-config
 
-ADD ./w3tc-config /app/wordpress/wp-content/w3tc-config
-ADD ./nginx-site.conf /etc/nginx/sites-available/default
+ADD www/andreas.php /app/wordpress/
+ADD www/health.php /app/wordpress/
+
+ADD etc/wordpress/w3tc-config /app/wordpress/wp-content/w3tc-config
+ADD etc/wordpress/wp-config.php /app/wordpress/
 
 
 # Wordpress Initialization and Startup Script
-ADD ./start.sh /start.sh
+ADD bin/start.sh /start.sh
 RUN chmod 755 /start.sh
 
 

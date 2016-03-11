@@ -47,9 +47,6 @@
 	},
 	"scripts": {
 		"post-install-cmd": [
-			"cp wp-config.php wordpress/wp-config.php",
-			"cp andreas.php wordpress/andreas.php",
-			"cp health.php wordpress/health.php",
 			"cp wordpress/wp-content/plugins/w3-total-cache/wp-content/advanced-cache.php wordpress/wp-content/advanced-cache.php",
 			"cp wordpress/wp-content/plugins/w3-total-cache/wp-content/object-cache.php wordpress/wp-content/object-cache.php",
 			"cp wordpress/wp-content/plugins/w3-total-cache/wp-content/db.php wordpress/wp-content/db.php"
