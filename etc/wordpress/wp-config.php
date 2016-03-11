@@ -1,7 +1,7 @@
 <?php
 
 define('WP_CACHE', true); 
-define('WP_DEBUG', true); 
+define('WP_DEBUG', false); 
 define('SAVEQUERIES', true); 
 
 /**
