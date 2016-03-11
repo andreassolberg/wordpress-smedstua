@@ -15,7 +15,7 @@ gcloud container clusters get-credentials solberg-cluster2
 
     docker build -t smedstua .
     docker run -d -p 80:80 --name smedstua --env-file=./ENV -t smedstua
-    docker run -p 80:80 --name smedstua --env-file=./ENV -t smedstua
+    docker run -p 80:80 --env-file=./ENV -t smedstua
     docker ps
 
 
